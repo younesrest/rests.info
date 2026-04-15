@@ -365,3 +365,40 @@ function initScrollAnimations() {
         observer.observe(el);
     });
 }
+
+// ========================================
+// CV Download and Certificate Functions
+// ========================================
+function initDocumentHandlers() {
+    // Download CV button
+    const downloadCVBtn = document.getElementById('download-cv-btn');
+    if (downloadCVBtn) {
+        downloadCVBtn.addEventListener('click', downloadCV);
+    }
+    
+    // View Certificate button
+    const viewCertificateBtn = document.getElementById('view-certificate-btn');
+    if (viewCertificateBtn) {
+        viewCertificateBtn.addEventListener('click', viewCertificate);
+    }
+}
+
+function downloadCV() {
+    const link = document.createElement('a');
+    link.href = 'YounesCv.pdf';
+    link.download = 'Younes-Laghzali-CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function viewCertificate() {
+    window.open('certificate.pdf', '_blank');
+}
+
+// Initialize document handlers when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDocumentHandlers);
+} else {
+    initDocumentHandlers();
+}
